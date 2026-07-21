@@ -1,5 +1,6 @@
 from datetime import datetime
 
+from email_report import render_email_report
 from get_stock_list import get_stock_list
 from quant_analysis import download_batch, market_strength_summary, score_and_rank
 
@@ -47,10 +48,16 @@ def main():
     top_10 = df_ranked.head(10)
     top_10.to_csv(output_file, index=False, encoding="utf-8-sig")
 
+    report_file = "report.html"
+    report_html = render_email_report(top_10, df_ranked)
+    with open(report_file, "w", encoding="utf-8") as report:
+        report.write(report_html)
+
     print_report(top_10, df_ranked)
 
     print(f"\n前 10 名數據已儲存至: {output_file}")
-    print(f"完整候選數量: {len(df_ranked)}；email 附件只包含前 10 名。")
+    print(f"HTML email 報告已儲存至: {report_file}")
+    print(f"完整候選數量: {len(df_ranked)}；email 正文呈現前 10 名個股卡片，CSV 保留為附件。")
 
 
 if __name__ == "__main__":
