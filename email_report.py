@@ -49,7 +49,7 @@ def _score_chart(top_10: pd.DataFrame) -> str:
         label = html.escape(f"{row.get('symbol', '')} {row.get('name', '')}")
         rows.append(
             '<tr><td style="padding:5px 10px 5px 0;width:145px;font-size:13px">'
-            f"{label}</td><td style="padding:5px 0">"
+            f'{label}</td><td style="padding:5px 0">'
             '<table role="presentation" width="100%" cellspacing="0" cellpadding="0">'
             '<tr><td style="background:#e8edf3;height:12px;border-radius:6px">'
             f'<div style="width:{width:.0f}%;height:12px;background:{color};border-radius:6px"></div>'
@@ -81,7 +81,7 @@ def _stock_card(row: pd.Series) -> str:
         value = _number(row.get(column))
         factor_rows.append(
             '<tr><td style="padding:5px 8px 5px 0;width:88px;font-size:12px">'
-            f"{label}</td><td style="padding:5px 8px">{_factor_bar(value)}</td>"
+            f'{label}</td><td style="padding:5px 8px">{_factor_bar(value)}</td>'
             f'<td style="padding:5px 0;width:70px;text-align:right;font-size:12px">{value:+.2f} · {weight}</td></tr>'
         )
 
